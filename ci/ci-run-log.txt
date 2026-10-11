@@ -1,0 +1,16 @@
+﻿TicketHub CI — Run #3 (commit ee37ac8)
+Workflow: .github/workflows/ci.yml
+Runner: ubuntu-latest
+Python: 3.12.15
+pytest: 8.2.0
+
+Step 5 — Run tests:
+  pytest tests/ -v --junitxml=ci/test-results.xml
+  ========== test session starts ==========
+  collected 1 item
+  tests/test_smoke.py::test_smoke PASSED  [100%]
+  - generated xml file: .../ci/test-results.xml -
+  ========== 1 passed in 0.01s ==========
+
+Step 6 — Upload test report: success (artifact: test-results, 332 Bytes)
+Job status: Success (8s)
