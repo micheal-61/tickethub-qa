@@ -18,7 +18,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Run tests
-        run: pytest tests/ -v --junitxml=ci/test-results.xml
+        run: |
+          mkdir -p ci
+          pytest tests/ -v --junitxml=ci/test-results.xml
       - name: Upload test report
         if: always()
         uses: actions/upload-artifact@v4
