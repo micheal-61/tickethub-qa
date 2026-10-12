@@ -1,0 +1,508 @@
+mkdir -p ci
+  pytest tests/ -v --junitxml=ci/test-results.xml
+  shell: /usr/bin/bash -e {0}
+  env:
+    pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+    PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+    Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+    Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+    Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+    LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+============================= test session starts ==============================
+platform linux -- Python 3.12.15, pytest-8.2.0, pluggy-1.6.0 -- /opt/hostedtoolcache/Python/3.12.15/x64/bin/python
+cachedir: .pytest_cache
+metadata: {'Python': '3.12.15', 'Platform': 'Linux-6.17.0-1022-azure-x86_64-with-glibc2.39', 'Packages': {'pytest': '8.2.0', 'pluggy': '1.6.0'}, 'Plugins': {'metadata': '3.1.1', 'html': '4.1.1'}, 'CI': 'true', 'JAVA_HOME': '/usr/lib/jvm/temurin-17-jdk-amd64'}
+rootdir: /home/runner/work/tickethub-qa/tickethub-qa
+configfile: pyproject.toml
+plugins: metadata-3.1.1, html-4.1.1
+collecting ... collected 68 items
+
+tests/test_tickethub.py::test_TC01_quantity_valid[TC-q1] PASSED          [  1%]
+tests/test_tickethub.py::test_TC01_quantity_valid[TC-q2] PASSED          [  2%]
+tests/test_tickethub.py::test_TC01_quantity_valid[TC-q4] PASSED          [  4%]
+tests/test_tickethub.py::test_TC01_quantity_valid[TC-q9] PASSED          [  5%]
+tests/test_tickethub.py::test_TC01_quantity_valid[TC-q10] FAILED         [  7%]
+tests/test_tickethub.py::test_TC06_quantity_out_of_range[0] PASSED       [  8%]
+tests/test_tickethub.py::test_TC06_quantity_out_of_range[-1] PASSED      [ 10%]
+tests/test_tickethub.py::test_TC06_quantity_out_of_range[11] PASSED      [ 11%]
+tests/test_tickethub.py::test_TC06_quantity_out_of_range[100] PASSED     [ 13%]
+tests/test_tickethub.py::test_TC07_quantity_wrong_type[float] PASSED     [ 14%]
+tests/test_tickethub.py::test_TC07_quantity_wrong_type[str] PASSED       [ 16%]
+tests/test_tickethub.py::test_TC07_quantity_wrong_type[none] PASSED      [ 17%]
+tests/test_tickethub.py::test_TC07_quantity_wrong_type[bool] PASSED      [ 19%]
+tests/test_tickethub.py::test_TC09_invalid_customer_type[student] PASSED [ 20%]
+tests/test_tickethub.py::test_TC09_invalid_customer_type[ALUMNI] PASSED  [ 22%]
+tests/test_tickethub.py::test_TC09_invalid_customer_type[] PASSED        [ 23%]
+tests/test_tickethub.py::test_TC09_invalid_customer_type[None] PASSED    [ 25%]
+tests/test_tickethub.py::test_TC15_discount_rules[4-STUDENT-None-0.20] PASSED [ 26%]
+tests/test_tickethub.py::test_TC15_discount_rules[7-STUDENT-None-0.25] PASSED [ 27%]
+tests/test_tickethub.py::test_TC15_discount_rules[4-STUDENT-SAVE10-0.25] FAILED [ 29%]
+tests/test_tickethub.py::test_TC15_discount_rules[4-STAFF-None-0.10] PASSED [ 30%]
+tests/test_tickethub.py::test_TC15_discount_rules[7-STAFF-None-0.15] PASSED [ 32%]
+tests/test_tickethub.py::test_TC15_discount_rules[7-STAFF-SAVE10-0.20] FAILED [ 33%]
+tests/test_tickethub.py::test_TC15_discount_rules[4-PUBLIC-None-0] PASSED [ 35%]
+tests/test_tickethub.py::test_TC15_discount_rules[7-PUBLIC-None-0.05] PASSED [ 36%]
+tests/test_tickethub.py::test_TC15_discount_rules[4-PUBLIC-SAVE10-0.10] PASSED [ 38%]
+tests/test_tickethub.py::test_TC24_bulk_threshold_5 FAILED               [ 39%]
+tests/test_tickethub.py::test_TC25_cap_25_percent FAILED                 [ 41%]
+tests/test_tickethub.py::test_TC26_promo_and_bulk_do_not_stack FAILED    [ 42%]
+tests/test_tickethub.py::test_TC28_totals_exact[1-PUBLIC-None-19.99] PASSED [ 44%]
+tests/test_tickethub.py::test_TC28_totals_exact[4-PUBLIC-None-79.96] PASSED [ 45%]
+tests/test_tickethub.py::test_TC28_totals_exact[3-STAFF-None-53.97] PASSED [ 47%]
+tests/test_tickethub.py::test_TC31_rounding_half_up FAILED               [ 48%]
+tests/test_tickethub.py::test_TC32_invalid_promo[BADCODE] PASSED         [ 50%]
+tests/test_tickethub.py::test_TC32_invalid_promo[] PASSED                [ 51%]
+tests/test_tickethub.py::test_TC32_invalid_promo[SAVE20] PASSED          [ 52%]
+tests/test_tickethub.py::test_TC33_promo_case_sensitive FAILED           [ 54%]
+tests/test_tickethub.py::test_TC36_valid_transitions[CREATED-pay-PAID] PASSED [ 55%]
+tests/test_tickethub.py::test_TC36_valid_transitions[CREATED-cancel-CANCELLED] PASSED [ 57%]
+tests/test_tickethub.py::test_TC36_valid_transitions[PAID-cancel-REFUND_PENDING] FAILED [ 58%]
+tests/test_tickethub.py::test_TC36_valid_transitions[PAID-collect-COLLECTED] PASSED [ 60%]
+tests/test_tickethub.py::test_TC36_valid_transitions[REFUND_PENDING-complete_refund-REFUNDED] FAILED [ 61%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[pay-CREATED] SKIPPED [ 63%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[pay-PAID] PASSED  [ 64%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[pay-COLLECTED] PASSED [ 66%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[pay-REFUND_PENDING] FAILED [ 67%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[pay-REFUNDED] FAILED [ 69%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[pay-CANCELLED] PASSED [ 70%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[cancel-CREATED] SKIPPED [ 72%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[cancel-PAID] SKIPPED [ 73%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[cancel-COLLECTED] FAILED [ 75%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[cancel-REFUND_PENDING] FAILED [ 76%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[cancel-REFUNDED] FAILED [ 77%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[cancel-CANCELLED] PASSED [ 79%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[collect-CREATED] PASSED [ 80%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[collect-PAID] SKIPPED [ 82%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[collect-COLLECTED] PASSED [ 83%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[collect-REFUND_PENDING] FAILED [ 85%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[collect-REFUNDED] FAILED [ 86%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[collect-CANCELLED] PASSED [ 88%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[complete_refund-CREATED] PASSED [ 89%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[complete_refund-PAID] PASSED [ 91%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[complete_refund-COLLECTED] PASSED [ 92%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[complete_refund-REFUND_PENDING] SKIPPED [ 94%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[complete_refund-REFUNDED] FAILED [ 95%]
+tests/test_tickethub.py::test_TC41_invalid_transitions[complete_refund-CANCELLED] PASSED [ 97%]
+tests/test_tickethub.py::test_TC60a_path_pay_collect PASSED              [ 98%]
+tests/test_tickethub.py::test_TC60b_path_pay_cancel_refund FAILED        [100%]
+
+=================================== FAILURES ===================================
+_______________________ test_TC01_quantity_valid[TC-q10] _______________________
+
+q = 10
+
+    @pytest.mark.parametrize("q", [1, 2, 4, 9, 10], ids=lambda q: f"TC-q{q}")
+    def test_TC01_quantity_valid(q):
+>       assert th.calculate_total(q, "PUBLIC") > 0
+
+tests/test_tickethub.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/tickethub.py:54: in calculate_total
+    rate = calculate_discount(quantity, customer_type, promo_code)
+src/tickethub.py:44: in calculate_discount
+    _validate(quantity, customer_type, promo_code)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+quantity = 10, customer_type = 'PUBLIC', promo_code = None
+
+    def _validate(quantity, customer_type, promo_code):
+        if isinstance(quantity, bool) or not isinstance(quantity, int):
+            raise TypeError("quantity must be an integer")
+        if quantity < MIN_QTY or quantity >= MAX_QTY:
+>           raise ValueError("quantity must be between 1 and 10")
+E           ValueError: quantity must be between 1 and 10
+
+src/tickethub.py:36: ValueError
+_______________ test_TC15_discount_rules[4-STUDENT-SAVE10-0.25] ________________
+
+q = 4, t = 'STUDENT', promo = 'SAVE10', rate = '0.25'
+
+    @pytest.mark.parametrize("q,t,promo,rate", [
+        (4, "STUDENT", None, "0.20"),
+        (7, "STUDENT", None, "0.25"),
+        (4, "STUDENT", "SAVE10", "0.25"),
+        (4, "STAFF", None, "0.10"),
+        (7, "STAFF", None, "0.15"),
+        (7, "STAFF", "SAVE10", "0.20"),
+        (4, "PUBLIC", None, "0"),
+        (7, "PUBLIC", None, "0.05"),
+        (4, "PUBLIC", "SAVE10", "0.10"),
+    ])
+    def test_TC15_discount_rules(q, t, promo, rate):
+>       assert th.calculate_discount(q, t, promo) == D(rate)
+E       AssertionError: assert Decimal('0.30') == Decimal('0.25')
+E        +  where Decimal('0.30') = <function calculate_discount at 0x7f61fdc51300>(4, 'STUDENT', 'SAVE10')
+E        +    where <function calculate_discount at 0x7f61fdc51300> = th.calculate_discount
+E        +  and   Decimal('0.25') = D('0.25')
+
+tests/test_tickethub.py:47: AssertionError
+________________ test_TC15_discount_rules[7-STAFF-SAVE10-0.20] _________________
+
+q = 7, t = 'STAFF', promo = 'SAVE10', rate = '0.20'
+
+    @pytest.mark.parametrize("q,t,promo,rate", [
+        (4, "STUDENT", None, "0.20"),
+        (7, "STUDENT", None, "0.25"),
+        (4, "STUDENT", "SAVE10", "0.25"),
+        (4, "STAFF", None, "0.10"),
+        (7, "STAFF", None, "0.15"),
+        (7, "STAFF", "SAVE10", "0.20"),
+        (4, "PUBLIC", None, "0"),
+        (7, "PUBLIC", None, "0.05"),
+        (4, "PUBLIC", "SAVE10", "0.10"),
+    ])
+    def test_TC15_discount_rules(q, t, promo, rate):
+>       assert th.calculate_discount(q, t, promo) == D(rate)
+E       AssertionError: assert Decimal('0.25') == Decimal('0.20')
+E        +  where Decimal('0.25') = <function calculate_discount at 0x7f61fdc51300>(7, 'STAFF', 'SAVE10')
+E        +    where <function calculate_discount at 0x7f61fdc51300> = th.calculate_discount
+E        +  and   Decimal('0.20') = D('0.20')
+
+tests/test_tickethub.py:47: AssertionError
+__________________________ test_TC24_bulk_threshold_5 __________________________
+
+    def test_TC24_bulk_threshold_5():
+>       assert th.calculate_discount(5, "PUBLIC") == D("0.05")
+E       AssertionError: assert Decimal('0') == Decimal('0.05')
+E        +  where Decimal('0') = <function calculate_discount at 0x7f61fdc51300>(5, 'PUBLIC')
+E        +    where <function calculate_discount at 0x7f61fdc51300> = th.calculate_discount
+E        +  and   Decimal('0.05') = D('0.05')
+
+tests/test_tickethub.py:50: AssertionError
+___________________________ test_TC25_cap_25_percent ___________________________
+
+    def test_TC25_cap_25_percent():
+>       assert th.calculate_discount(4, "STUDENT", "SAVE10") == D("0.25")
+E       AssertionError: assert Decimal('0.30') == Decimal('0.25')
+E        +  where Decimal('0.30') = <function calculate_discount at 0x7f61fdc51300>(4, 'STUDENT', 'SAVE10')
+E        +    where <function calculate_discount at 0x7f61fdc51300> = th.calculate_discount
+E        +  and   Decimal('0.25') = D('0.25')
+
+tests/test_tickethub.py:54: AssertionError
+____________________ test_TC26_promo_and_bulk_do_not_stack _____________________
+
+    def test_TC26_promo_and_bulk_do_not_stack():
+        assert th.calculate_discount(5, "PUBLIC", "SAVE10") == D("0.10")
+>       assert th.calculate_discount(7, "STAFF", "SAVE10") == D("0.20")
+E       AssertionError: assert Decimal('0.25') == Decimal('0.20')
+E        +  where Decimal('0.25') = <function calculate_discount at 0x7f61fdc51300>(7, 'STAFF', 'SAVE10')
+E        +    where <function calculate_discount at 0x7f61fdc51300> = th.calculate_discount
+E        +  and   Decimal('0.20') = D('0.20')
+
+tests/test_tickethub.py:58: AssertionError
+__________________________ test_TC31_rounding_half_up __________________________
+
+    def test_TC31_rounding_half_up():
+>       assert th.calculate_total(3, "STUDENT") == D("47.98")
+E       AssertionError: assert Decimal('47.97') == Decimal('47.98')
+E        +  where Decimal('47.97') = <function calculate_total at 0x7f61fdc513a0>(3, 'STUDENT')
+E        +    where <function calculate_total at 0x7f61fdc513a0> = th.calculate_total
+E        +  and   Decimal('47.98') = D('47.98')
+
+tests/test_tickethub.py:72: AssertionError
+________________________ test_TC33_promo_case_sensitive ________________________
+
+    def test_TC33_promo_case_sensitive():
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_tickethub.py:84: Failed
+___________ test_TC36_valid_transitions[PAID-cancel-REFUND_PENDING] ____________
+
+s = 'PAID', ev = 'cancel', nxt = 'REFUND_PENDING'
+
+    @pytest.mark.parametrize("s,ev,nxt", VALID)
+    def test_TC36_valid_transitions(s, ev, nxt):
+        o = _order_in(s)
+        getattr(o, ev)()
+>       assert o.state == nxt
+E       AssertionError: assert 'CANCELLED' == 'REFUND_PENDING'
+E         
+E         - REFUND_PENDING
+E         + CANCELLED
+
+tests/test_tickethub.py:108: AssertionError
+_____ test_TC36_valid_transitions[REFUND_PENDING-complete_refund-REFUNDED] _____
+
+s = 'REFUND_PENDING', ev = 'complete_refund', nxt = 'REFUNDED'
+
+    @pytest.mark.parametrize("s,ev,nxt", VALID)
+    def test_TC36_valid_transitions(s, ev, nxt):
+        o = _order_in(s)
+>       getattr(o, ev)()
+
+tests/test_tickethub.py:107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/tickethub.py:90: in complete_refund
+    self._fire("complete_refund")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <tickethub.Order object at 0x7f61fdc862d0>, event = 'complete_refund'
+
+    def _fire(self, event):
+        key = (self.state, event)
+        if key not in _TRANSITIONS:
+>           raise InvalidTransitionError(f"'{event}' not allowed in state {self.state}")
+E           tickethub.InvalidTransitionError: 'complete_refund' not allowed in state CANCELLED
+
+src/tickethub.py:77: InvalidTransitionError
+______________ test_TC41_invalid_transitions[pay-REFUND_PENDING] _______________
+
+s = 'REFUND_PENDING', ev = 'pay'
+
+    @pytest.mark.parametrize("s", STATES)
+    @pytest.mark.parametrize("ev", EVENTS)
+    def test_TC41_invalid_transitions(s, ev):
+        if (s, ev) in VALID_PAIRS:
+            pytest.skip("valid pair")
+        o = _order_in(s)
+        with pytest.raises(InvalidTransitionError):
+            getattr(o, ev)()
+>       assert o.state == s
+E       AssertionError: assert 'CANCELLED' == 'REFUND_PENDING'
+E         
+E         - REFUND_PENDING
+E         + CANCELLED
+
+tests/test_tickethub.py:123: AssertionError
+_________________ test_TC41_invalid_transitions[pay-REFUNDED] __________________
+
+s = 'REFUNDED', ev = 'pay'
+
+    @pytest.mark.parametrize("s", STATES)
+    @pytest.mark.parametrize("ev", EVENTS)
+    def test_TC41_invalid_transitions(s, ev):
+        if (s, ev) in VALID_PAIRS:
+            pytest.skip("valid pair")
+>       o = _order_in(s)
+
+tests/test_tickethub.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tickethub.py:96: in _order_in
+    getattr(o, ev)()
+src/tickethub.py:90: in complete_refund
+    self._fire("complete_refund")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <tickethub.Order object at 0x7f61fdc84fe0>, event = 'complete_refund'
+
+    def _fire(self, event):
+        key = (self.state, event)
+        if key not in _TRANSITIONS:
+>           raise InvalidTransitionError(f"'{event}' not allowed in state {self.state}")
+E           tickethub.InvalidTransitionError: 'complete_refund' not allowed in state CANCELLED
+
+src/tickethub.py:77: InvalidTransitionError
+_______________ test_TC41_invalid_transitions[cancel-COLLECTED] ________________
+
+s = 'COLLECTED', ev = 'cancel'
+
+    @pytest.mark.parametrize("s", STATES)
+    @pytest.mark.parametrize("ev", EVENTS)
+    def test_TC41_invalid_transitions(s, ev):
+        if (s, ev) in VALID_PAIRS:
+            pytest.skip("valid pair")
+        o = _order_in(s)
+>       with pytest.raises(InvalidTransitionError):
+E       Failed: DID NOT RAISE <class 'tickethub.InvalidTransitionError'>
+
+tests/test_tickethub.py:121: Failed
+_____________ test_TC41_invalid_transitions[cancel-REFUND_PENDING] _____________
+
+s = 'REFUND_PENDING', ev = 'cancel'
+
+    @pytest.mark.parametrize("s", STATES)
+    @pytest.mark.parametrize("ev", EVENTS)
+    def test_TC41_invalid_transitions(s, ev):
+        if (s, ev) in VALID_PAIRS:
+            pytest.skip("valid pair")
+        o = _order_in(s)
+        with pytest.raises(InvalidTransitionError):
+            getattr(o, ev)()
+>       assert o.state == s
+E       AssertionError: assert 'CANCELLED' == 'REFUND_PENDING'
+E         
+E         - REFUND_PENDING
+E         + CANCELLED
+
+tests/test_tickethub.py:123: AssertionError
+________________ test_TC41_invalid_transitions[cancel-REFUNDED] ________________
+
+s = 'REFUNDED', ev = 'cancel'
+
+    @pytest.mark.parametrize("s", STATES)
+    @pytest.mark.parametrize("ev", EVENTS)
+    def test_TC41_invalid_transitions(s, ev):
+        if (s, ev) in VALID_PAIRS:
+            pytest.skip("valid pair")
+>       o = _order_in(s)
+
+tests/test_tickethub.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tickethub.py:96: in _order_in
+    getattr(o, ev)()
+src/tickethub.py:90: in complete_refund
+    self._fire("complete_refund")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <tickethub.Order object at 0x7f61fdc8e750>, event = 'complete_refund'
+
+    def _fire(self, event):
+        key = (self.state, event)
+        if key not in _TRANSITIONS:
+>           raise InvalidTransitionError(f"'{event}' not allowed in state {self.state}")
+E           tickethub.InvalidTransitionError: 'complete_refund' not allowed in state CANCELLED
+
+src/tickethub.py:77: InvalidTransitionError
+____________ test_TC41_invalid_transitions[collect-REFUND_PENDING] _____________
+
+s = 'REFUND_PENDING', ev = 'collect'
+
+    @pytest.mark.parametrize("s", STATES)
+    @pytest.mark.parametrize("ev", EVENTS)
+    def test_TC41_invalid_transitions(s, ev):
+        if (s, ev) in VALID_PAIRS:
+            pytest.skip("valid pair")
+        o = _order_in(s)
+        with pytest.raises(InvalidTransitionError):
+            getattr(o, ev)()
+>       assert o.state == s
+E       AssertionError: assert 'CANCELLED' == 'REFUND_PENDING'
+E         
+E         - REFUND_PENDING
+E         + CANCELLED
+
+tests/test_tickethub.py:123: AssertionError
+_______________ test_TC41_invalid_transitions[collect-REFUNDED] ________________
+
+s = 'REFUNDED', ev = 'collect'
+
+    @pytest.mark.parametrize("s", STATES)
+    @pytest.mark.parametrize("ev", EVENTS)
+    def test_TC41_invalid_transitions(s, ev):
+        if (s, ev) in VALID_PAIRS:
+            pytest.skip("valid pair")
+>       o = _order_in(s)
+
+tests/test_tickethub.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tickethub.py:96: in _order_in
+    getattr(o, ev)()
+src/tickethub.py:90: in complete_refund
+    self._fire("complete_refund")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <tickethub.Order object at 0x7f61fdc84e90>, event = 'complete_refund'
+
+    def _fire(self, event):
+        key = (self.state, event)
+        if key not in _TRANSITIONS:
+>           raise InvalidTransitionError(f"'{event}' not allowed in state {self.state}")
+E           tickethub.InvalidTransitionError: 'complete_refund' not allowed in state CANCELLED
+
+src/tickethub.py:77: InvalidTransitionError
+___________ test_TC41_invalid_transitions[complete_refund-REFUNDED] ____________
+
+s = 'REFUNDED', ev = 'complete_refund'
+
+    @pytest.mark.parametrize("s", STATES)
+    @pytest.mark.parametrize("ev", EVENTS)
+    def test_TC41_invalid_transitions(s, ev):
+        if (s, ev) in VALID_PAIRS:
+            pytest.skip("valid pair")
+>       o = _order_in(s)
+
+tests/test_tickethub.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tickethub.py:96: in _order_in
+    getattr(o, ev)()
+src/tickethub.py:90: in complete_refund
+    self._fire("complete_refund")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <tickethub.Order object at 0x7f61fdc60b00>, event = 'complete_refund'
+
+    def _fire(self, event):
+        key = (self.state, event)
+        if key not in _TRANSITIONS:
+>           raise InvalidTransitionError(f"'{event}' not allowed in state {self.state}")
+E           tickethub.InvalidTransitionError: 'complete_refund' not allowed in state CANCELLED
+
+src/tickethub.py:77: InvalidTransitionError
+______________________ test_TC60b_path_pay_cancel_refund _______________________
+
+    def test_TC60b_path_pay_cancel_refund():
+>       o = Order(1, "PUBLIC"); o.pay(); o.cancel(); o.complete_refund()
+
+tests/test_tickethub.py:130: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/tickethub.py:90: in complete_refund
+    self._fire("complete_refund")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <tickethub.Order object at 0x7f61fdc8f5c0>, event = 'complete_refund'
+
+    def _fire(self, event):
+        key = (self.state, event)
+        if key not in _TRANSITIONS:
+>           raise InvalidTransitionError(f"'{event}' not allowed in state {self.state}")
+E           tickethub.InvalidTransitionError: 'complete_refund' not allowed in state CANCELLED
+
+src/tickethub.py:77: InvalidTransitionError
+- generated xml file: /home/runner/work/tickethub-qa/tickethub-qa/ci/test-results.xml -
+=========================== short test summary info ============================
+SKIPPED [5] tests/test_tickethub.py:119: valid pair
+FAILED tests/test_tickethub.py::test_TC01_quantity_valid[TC-q10] - ValueError: quantity must be between 1 and 10
+FAILED tests/test_tickethub.py::test_TC15_discount_rules[4-STUDENT-SAVE10-0.25] - AssertionError: assert Decimal('0.30') == Decimal('0.25')
+ +  where Decimal('0.30') = <function calculate_discount at 0x7f61fdc51300>(4, 'STUDENT', 'SAVE10')
+ +    where <function calculate_discount at 0x7f61fdc51300> = th.calculate_discount
+ +  and   Decimal('0.25') = D('0.25')
+FAILED tests/test_tickethub.py::test_TC15_discount_rules[7-STAFF-SAVE10-0.20] - AssertionError: assert Decimal('0.25') == Decimal('0.20')
+ +  where Decimal('0.25') = <function calculate_discount at 0x7f61fdc51300>(7, 'STAFF', 'SAVE10')
+ +    where <function calculate_discount at 0x7f61fdc51300> = th.calculate_discount
+ +  and   Decimal('0.20') = D('0.20')
+FAILED tests/test_tickethub.py::test_TC24_bulk_threshold_5 - AssertionError: assert Decimal('0') == Decimal('0.05')
+ +  where Decimal('0') = <function calculate_discount at 0x7f61fdc51300>(5, 'PUBLIC')
+ +    where <function calculate_discount at 0x7f61fdc51300> = th.calculate_discount
+ +  and   Decimal('0.05') = D('0.05')
+FAILED tests/test_tickethub.py::test_TC25_cap_25_percent - AssertionError: assert Decimal('0.30') == Decimal('0.25')
+ +  where Decimal('0.30') = <function calculate_discount at 0x7f61fdc51300>(4, 'STUDENT', 'SAVE10')
+ +    where <function calculate_discount at 0x7f61fdc51300> = th.calculate_discount
+ +  and   Decimal('0.25') = D('0.25')
+FAILED tests/test_tickethub.py::test_TC26_promo_and_bulk_do_not_stack - AssertionError: assert Decimal('0.25') == Decimal('0.20')
+ +  where Decimal('0.25') = <function calculate_discount at 0x7f61fdc51300>(7, 'STAFF', 'SAVE10')
+ +    where <function calculate_discount at 0x7f61fdc51300> = th.calculate_discount
+ +  and   Decimal('0.20') = D('0.20')
+FAILED tests/test_tickethub.py::test_TC31_rounding_half_up - AssertionError: assert Decimal('47.97') == Decimal('47.98')
+ +  where Decimal('47.97') = <function calculate_total at 0x7f61fdc513a0>(3, 'STUDENT')
+ +    where <function calculate_total at 0x7f61fdc513a0> = th.calculate_total
+ +  and   Decimal('47.98') = D('47.98')
+FAILED tests/test_tickethub.py::test_TC33_promo_case_sensitive - Failed: DID NOT RAISE <class 'ValueError'>
+FAILED tests/test_tickethub.py::test_TC36_valid_transitions[PAID-cancel-REFUND_PENDING] - AssertionError: assert 'CANCELLED' == 'REFUND_PENDING'
+  
+  - REFUND_PENDING
+  + CANCELLED
+FAILED tests/test_tickethub.py::test_TC36_valid_transitions[REFUND_PENDING-complete_refund-REFUNDED] - tickethub.InvalidTransitionError: 'complete_refund' not allowed in state CANCELLED
+FAILED tests/test_tickethub.py::test_TC41_invalid_transitions[pay-REFUND_PENDING] - AssertionError: assert 'CANCELLED' == 'REFUND_PENDING'
+  
+  - REFUND_PENDING
+  + CANCELLED
+FAILED tests/test_tickethub.py::test_TC41_invalid_transitions[pay-REFUNDED] - tickethub.InvalidTransitionError: 'complete_refund' not allowed in state CANCELLED
+FAILED tests/test_tickethub.py::test_TC41_invalid_transitions[cancel-COLLECTED] - Failed: DID NOT RAISE <class 'tickethub.InvalidTransitionError'>
+FAILED tests/test_tickethub.py::test_TC41_invalid_transitions[cancel-REFUND_PENDING] - AssertionError: assert 'CANCELLED' == 'REFUND_PENDING'
+  
+  - REFUND_PENDING
+  + CANCELLED
+FAILED tests/test_tickethub.py::test_TC41_invalid_transitions[cancel-REFUNDED] - tickethub.InvalidTransitionError: 'complete_refund' not allowed in state CANCELLED
+FAILED tests/test_tickethub.py::test_TC41_invalid_transitions[collect-REFUND_PENDING] - AssertionError: assert 'CANCELLED' == 'REFUND_PENDING'
+  
+  - REFUND_PENDING
+  + CANCELLED
+FAILED tests/test_tickethub.py::test_TC41_invalid_transitions[collect-REFUNDED] - tickethub.InvalidTransitionError: 'complete_refund' not allowed in state CANCELLED
+FAILED tests/test_tickethub.py::test_TC41_invalid_transitions[complete_refund-REFUNDED] - tickethub.InvalidTransitionError: 'complete_refund' not allowed in state CANCELLED
+FAILED tests/test_tickethub.py::test_TC60b_path_pay_cancel_refund - tickethub.InvalidTransitionError: 'complete_refund' not allowed in state CANCELLED
+=================== 19 failed, 44 passed, 5 skipped in 0.21s ===================
+Error: Process completed with exit code 1.
+1s
+0s
+0s
