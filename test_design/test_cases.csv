@@ -1,0 +1,23 @@
+Test case ID,Requirement(s),Technique,Level/type,Preconditions,Test data/steps,Expected result,Priority,Automated test,Result/defect
+TC-01,REQ-F1,EP,Unit/functional,None,calculate_total(1 "PUBLIC"),Decimal("19.99"),High,test_TC01_quantity_valid[TC-q1],Pass
+TC-02,REQ-F1,EP,Unit/functional,None,calculate_total(2 "PUBLIC"),>0,High,test_TC01_quantity_valid[TC-q2],Pass
+TC-03,REQ-F1,EP,Unit/functional,None,calculate_total(4 "PUBLIC"),>0,High,test_TC01_quantity_valid[TC-q4],Pass
+TC-04,REQ-F1,BVA,Unit/functional,None,calculate_total(9 "PUBLIC"),>0,High,test_TC01_quantity_valid[TC-q9],Pass
+TC-05,REQ-F1,BVA,Unit/functional,None,calculate_total(10 "PUBLIC"),Decimal("189.91"),High,test_TC01_quantity_valid[TC-q10],Fail (DEF-01)
+TC-06,REQ-F1,BVA,Unit/functional,None,calculate_total(0 "PUBLIC"),ValueError,High,test_TC06_quantity_out_of_range[0],Pass
+TC-07,REQ-F1,EP,Unit/functional,None,calculate_total(2.5 "PUBLIC"),TypeError,High,test_TC07_quantity_wrong_type[float],Pass
+TC-08,REQ-F1,EP,Unit/functional,None,calculate_total(True "PUBLIC"),TypeError,High,test_TC07_quantity_wrong_type[bool],Pass
+TC-09,REQ-F2,EP,Unit/functional,None,calculate_total(1 "student"),ValueError,Medium,test_TC09_invalid_customer_type[student],Pass
+TC-15,REQ-F4,DT,Unit/functional,None,calculate_discount(4 "STUDENT" None),Decimal("0.20"),High,test_TC15_discount_rules,Pass
+TC-17,REQ-F4,DT,Unit/functional,None,calculate_discount(4 "STUDENT" "SAVE10"),Decimal("0.25"),High,test_TC15_discount_rules[STUDENT-SAVE10],Fail (DEF-03)
+TC-24,REQ-F4,BVA,Unit/functional,None,calculate_discount(5 "PUBLIC"),Decimal("0.05"),High,test_TC24_bulk_threshold_5,Fail (DEF-02)
+TC-25,REQ-F4,DT,Unit/functional,None,calculate_discount(4 "STUDENT" "SAVE10"),Decimal("0.25"),High,test_TC25_cap_25_percent,Fail (DEF-03)
+TC-26,REQ-F4,DT,Unit/functional,None,calculate_discount(7 "STAFF" "SAVE10"),Decimal("0.20"),High,test_TC26_promo_and_bulk_do_not_stack,Fail (DEF-05)
+TC-31,REQ-F5,BVA,Unit/functional,None,calculate_total(3 "STUDENT"),Decimal("47.98"),High,test_TC31_rounding_half_up,Fail (DEF-06)
+TC-33,REQ-F6,EP,Unit/functional,None,calculate_total(1 "PUBLIC" "save10"),ValueError,Medium,test_TC33_promo_case_sensitive,Fail (DEF-04)
+TC-36,REQ-F7,ST,Unit/functional,Order in CREATED,order.pay(),PAID,High,test_TC36_valid_transitions[CREATED-pay-PAID],Pass
+TC-38,REQ-F7,ST,Unit/functional,Order in PAID,order.cancel(),REFUND_PENDING,Critical,test_TC36_valid_transitions[PAID-cancel-REFUND_PENDING],Fail (DEF-07)
+TC-39,REQ-F7,ST,Unit/functional,Order in PAID,order.collect(),COLLECTED,High,test_TC36_valid_transitions[PAID-collect-COLLECTED],Pass
+TC-41,REQ-F7,ST,Unit/functional,Order in COLLECTED,order.cancel(),InvalidTransitionError,High,test_TC41_invalid_transitions[cancel-COLLECTED],Fail (DEF-08)
+TC-60a,REQ-F7,ST,Unit/functional,Order in CREATED,pay then collect,COLLECTED,High,test_TC60a_path_pay_collect,Pass
+TC-60b,REQ-F7,ST,Unit/functional,Order in CREATED,pay then cancel then complete_refund,REFUNDED,Critical,test_TC60b_path_pay_cancel_refund,Fail (DEF-07)
